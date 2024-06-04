@@ -22,12 +22,7 @@ public class AccountController : ControllerBase
     {
         var account = await _accountsService.GetAsync(id);
 
-        if (account is null)
-        {
-            return NotFound();
-        }
-
-        return account;
+        return account is null ? (ActionResult<Account>)NotFound() : (ActionResult<Account>)account;
     }
 
     [HttpPost]

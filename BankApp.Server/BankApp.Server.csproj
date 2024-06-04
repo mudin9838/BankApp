@@ -29,4 +29,12 @@
     </ProjectReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\MONO-NET-REACTS\BankApp\BankApp.Server\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="D:\MONO-NET-REACTS\BankApp\BankApp.Server\.editorconfig" />
+  </ItemGroup>
+
 </Project>

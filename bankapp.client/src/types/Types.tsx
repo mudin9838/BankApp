@@ -1,6 +1,4 @@
-export type Product = {
-    id: number;
-    title: string;
-    description: string;
-    image: string;
-  };
+export type Tag = {
+  id: string;
+  name: string;
+};
