@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./component/Home";
+import Home from "./component/Tag";
 import Create from "./Create";
 import Update from "./Update";
 import { Read } from "./Read";
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+import Account from "./component/Account";
+import Transactions from "./component/Transactions";
 const buildMode = import.meta.env.MODE;
 
 export const BASE_URL =
@@ -17,7 +19,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route path="/" element={<Transactions />}></Route>
+        <Route path="/account" element={<Account />}></Route>
         <Route path="/create" element={<Create />}></Route>
         <Route path="/update/:id" element={<Update />}></Route>
         <Route path="/read/:id" element={<Read />}></Route>
