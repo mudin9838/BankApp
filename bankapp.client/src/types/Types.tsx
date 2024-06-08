@@ -1,4 +1,7 @@
 export type Tag = {
+  map(
+    arg0: (tag: any) => import("react/jsx-runtime").JSX.Element
+  ): import("react").ReactNode;
   id: string;
   name: string;
 };
@@ -17,3 +20,8 @@ export type Transaction = {
   transactionType: string;
   dateTime: string;
 };
+
+export enum PageEnum {
+  list,
+  add
+}

@@ -9,6 +9,7 @@ import { Read } from "./Read";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Account from "./component/Account";
 import Transactions from "./component/Transactions";
+import Tags from "./component/Tag";
 const buildMode = import.meta.env.MODE;
 
 export const BASE_URL =
@@ -19,7 +20,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Transactions />}></Route>
+        <Route path="/" element={<Tags />}></Route>
+        <Route path="/transactions" element={<Transactions />}></Route>
         <Route path="/account" element={<Account />}></Route>
         <Route path="/create" element={<Create />}></Route>
         <Route path="/update/:id" element={<Update />}></Route>

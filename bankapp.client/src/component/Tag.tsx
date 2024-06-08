@@ -1,45 +1,44 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Tag } from "../types/Types";
-import { Select, Option } from "@material-tailwind/react";
+import { PageEnum, Tag } from "../types/Types";
 import TagSummary from "./TagSummary";
+import { Card, Typography } from "@material-tailwind/react";
+import { Button } from "@mui/material";
+import AddTag from "./AddTag";
 
-function Home() {
-  const [tag, setTags] = useState<Tag[] | null>(null);
-  const [selected, setSelected] = useState<Tag | null>(); //instead of array we're returning a single value
+function Tags() {
+  const [tagList, setTagList] = useState<Tag[] | null>(null);
+  const [shownPage, setShownPage] = useState(PageEnum.list);
+
   useEffect(() => {
     const url = "https://localhost:7105/api/Tag";
 
     axios.get(url).then((response) => {
-      setTags(response.data);
+      setTagList(response.data);
     });
   }, []);
+
+  const onAddTagHandler = () => {
+    setShownPage(PageEnum.add);
+  };
+  const ShowListPage = () => {
+    setShownPage(PageEnum.list);
+  };
+
+  const addTag = (data: Tag) => {
+    setTagList([...tagList, data]); //first take list tag list then update data/push the record into array
+  };
+
   return (
     <>
-      <div className="App">
-        <select
-          name="title"
-          className="w-auto"
-          onChange={(e) => {
-            const c = tag?.find((x) => x.id === e.target.value);
-            setSelected(c);
-          }}
-          defaultValue="default"
-        >
-          <option value="default">Choose a title</option>
-          {tag
-            ? tag.map((tag) => {
-                return (
-                  <option key={tag.id} value={tag.id}>
-                    {tag.name}
-                  </option>
-                );
-              })
-            : null}
-        </select>
-      </div>
-      {selected ? <TagSummary tag={selected} /> : null}
+      {shownPage === PageEnum.list && (
+        <>
+          <Button onClick={onAddTagHandler}>Add Tag</Button>
+          <TagSummary tag={tagList} />
+        </>
+      )}
+      {shownPage === PageEnum.add && <AddTag handleSubmit={addTag} />}
     </>
   );
 }
-export default Home;
+export default Tags;
