@@ -3,11 +3,7 @@ import React, { useState } from "react";
 import { Tag } from "../types/Types";
 import axios from "axios";
 
-type Props = {
-  handleSubmit: (data: Tag) => void;
-};
-
-const AddTag = ({ handleSubmit }: Props) => {
+const AddTag = () => {
   const [name, setName] = useState("");
   const onNameChangeHandler = (e: any) => {
     setName(e.target.value);
@@ -24,7 +20,6 @@ const AddTag = ({ handleSubmit }: Props) => {
         let responseJson = res;
         if (responseJson) {
           console.log(responseJson);
-          handleSubmit(data);
           alert("Tag Added Successfully!");
 
           // navigate("/dashboard/roles");

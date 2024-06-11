@@ -23,5 +23,6 @@ export type Transaction = {
 
 export enum PageEnum {
   list,
-  add
+  add,
+  edit
 }

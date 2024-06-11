@@ -17,6 +17,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { DeleteOutline } from "@mui/icons-material";
 import { pink } from "@mui/material/colors";
 import { Typography } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -45,8 +46,9 @@ export default function TagSummary({ tag }: AppProps): JSX.Element {
     <>
       <Box textAlign="right">
         <Button style={{ textAlign: "end" }} color="primary">
-          Add
-          <AddIcon ali color="success" />
+          <Link to="/tag/add-tag" className="btn btn-primary">
+              Add(+)
+          </Link>
         </Button>
       </Box>
       <TableContainer component={Paper}>
@@ -65,7 +67,14 @@ export default function TagSummary({ tag }: AppProps): JSX.Element {
                       {tag.name}
                     </StyledTableCell>
                     <StyledTableCell align="right">
-                      <EditIcon fontSize="small"></EditIcon>
+                      <Link
+                        to={"/tag/edit-tag/" + tag.id}
+                        className="btn btn-sm"
+                        style={{ marginRight: "6px" }}
+                      >
+                        <EditIcon fontSize="small"></EditIcon>
+                      </Link>
+
                       <DeleteOutline
                         fontSize="small"
                         sx={{ color: pink[500] }}
