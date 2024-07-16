@@ -12,20 +12,19 @@ function EditTag() {
     name: "",
   });
 
-  const [count, setcount] = useState(0)
+  const [count, setcount] = useState(0);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.persist();
     // console.log(tagDetails)
-    settagDetails({ ...tagDetails, name: event.target.value });
-   console.log( setcount(count))
-
+    settagDetails({ ...tagDetails, [event.target.name]: event.target.value });
+    console.log("event ba", [event.target.name]);
   };
   useEffect(() => {
     axios.get(`https://localhost:7105/api/Tag/${id}`).then((result) => {
       let responseJson = result;
       if (responseJson) {
         console.log("error log", responseJson);
-        
+
         settagDetails({
           id: responseJson.data.id,
           name: responseJson.data.name,
@@ -51,7 +50,7 @@ function EditTag() {
         console.log(res);
         if (responseJson) {
           console.log(responseJson);
-         
+
           alert("Tag Updated Successfully!");
           navigate("/");
         } else {
@@ -69,6 +68,7 @@ function EditTag() {
             id="outlined-basic"
             label="Name"
             variant="outlined"
+            name="name"
             value={tagDetails.name}
             onChange={handleChange}
           />
